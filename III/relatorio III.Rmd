@@ -1,0 +1,34 @@
+---
+title: ""
+author: ""
+date:""
+output: html_document
+---
+# 1
+```{r}
+#install.packages("readxl")
+library(readxl)
+pathToDados <- r"{dados.xlsx}"
+data <- read_excel(pathToDados)
+class(data)
+```
+# 2
+```{r}
+"pTudoPrejudica" -> colnames(data)[which(names(data) == "v12")]
+"pPreocuparDemasiado" -> colnames(data)[which(names(data) == "v13")]
+"pCrescimentoEconomicoPos" -> colnames(data)[which(names(data) == "v14")]
+"pAnimaisExperiencias" -> colnames(data)[which(names(data) == "v15")]
+"pCrescimentoEconomicoNeg" -> colnames(data)[which(names(data) == "v16")]
+"pMundoMelhorar" -> colnames(data)[which(names(data) == "v72")]
+colnames(data)
+```
+# 3
+```{r}
+Omissos <- is.na(data$idade)
+which(Omissos)
+```
+
+# 4
+```{r}
+median(data$p) -> data$p[which(Omissos)]
+```
