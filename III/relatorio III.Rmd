@@ -6,10 +6,11 @@ output: html_document
 ---
 # 1
 ```{r}
+#install.packages("here")
 #install.packages("readxl")
+library(here)
 library(readxl)
-pathToDados <- r"{dados.xlsx}"
-data <- read_excel(pathToDados)
+data <- read_excel(here("I", "transformado.xlsx"))
 class(data)
 ```
 # 2
