@@ -1,2 +1,3 @@
-TaskManagerSimple/
-TaskManagerSimple.sln
+*
+!*.exe
+!tasks.json
