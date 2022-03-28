@@ -6,11 +6,17 @@ output: html_document
 ---
 # 1
 ```{r}
+#Auto path
 #install.packages("here")
-#install.packages("readxl")
 library(here)
-library(readxl)
-data <- read_excel(here("I", "transformado.xlsx"))
+pathh <- here("I", "transformado.xlsx")
+
+#manual path
+#pathh <- r'{}'
+#install.packages("readxl")
+
+#get dataframe
+data <- readxl::read_excel(pathh)
 class(data)
 ```
 # 2
@@ -25,7 +31,11 @@ colnames(data)
 ```
 # 3
 ```{r}
-Omissos <- is.na(data$idade)
+#if yhey are empty
+#Omissos <- is.na(data$idade)
+
+#if they are with a direct value of NA
+Omissos <- data$idade == "NA"
 which(Omissos)
 ```
 
