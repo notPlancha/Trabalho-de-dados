@@ -43,3 +43,26 @@ which(Omissos)
 ```{r}
 median(data$p) -> data$p[which(Omissos)]
 ```
+
+# 5
+```{r}
+tab_sexo <- table(data$ sexo)
+perc_tab_sexo <- prop.table(tab_sexo) * 100
+
+summary(data$ sexo)
+class(data$ sexo)
+
+tab_idade <- table(data$ idade)
+perc_tab_idade <- prop.table(tab_idade) * 100
+summary(data$ idade)
+mean(data$ idade)
+
+
+
+tab_sexo_idade <- table(data$ 'sexo', data$ 'idade')
+
+
+
+```
+
+
