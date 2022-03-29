@@ -48,12 +48,19 @@ median(data$p) -> data$p[which(Omissos)]
 ```{r}
 tab_sexo <- table(data$ sexo)
 perc_tab_sexo <- prop.table(tab_sexo) * 100
-summary(data$ sexo)
 
 tab_v15 <- table(data$ v15)
 perc_tab_v15 <- prop.table(tab_v15) * 100
 
-tab_v15_sexo <- table()
+tab_v15_sexo <- table(data$ v15, data$ sexo)
+perc_tab_v15_sexo <- prop.table(tab_v15_sexo) * 100
+
+tab_sexo
+perc_tab_sexo
+tab_v15
+perc_tab_v15
+tab_v15_sexo
+perc_tab_v15_sexo
 
 
 
