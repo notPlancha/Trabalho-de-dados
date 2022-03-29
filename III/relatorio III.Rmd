@@ -46,31 +46,9 @@ median(data$idade[which(!Omissos)]) -> data$idade[which(Omissos)]
 
 # 5
 ```{r}
-<<<<<<< HEAD
 fa = table(data$urbrural)
 perc = 100*prop.table(fa)
 tabela = cbind(fa, perc)
-=======
-tab_sexo <- table(data$ sexo)
-perc_tab_sexo <- prop.table(tab_sexo) * 100
-
-tab_v15 <- table(data$ v15)
-perc_tab_v15 <- prop.table(tab_v15) * 100
-
-tab_v15_sexo <- table(data$ v15, data$ sexo)
-perc_tab_v15_sexo <- prop.table(tab_v15_sexo) * 100
-
-tab_sexo
-perc_tab_sexo
-tab_v15
-perc_tab_v15
-tab_v15_sexo
-perc_tab_v15_sexo
-
-
-
-
->>>>>>> f7caaf330dc73a28edd6477ae0d1e09e2fb26ba2
 ```
 Pode-se então concluir pela visualização desta tabela que a maior parte dos inquiridos vive num meio rural correspondendo a 408 dos inquiridos que corresponde a cerca de 47 pontos percentuais do total. Pela análise da tabela verifica-se que a população inquirida atinge os polos visto que são os extremos os mais afetados. Nas zonas urbanas registou-se 345 inquiridos correspondendo a cerca de 40 por cento e por ultimo a minoria reside nas zonas suburbanas com um valor absoluto de 105 e uma percentagem de cerca de 12 por cento do total.
  
@@ -94,6 +72,19 @@ summary(data$idade)
 summary(data$anos_esc)
 summary(data$agregado)
 ´´´
+Pela análise dos dados obtidos neste código verificamos que os inquiridos têm entre 18 e 87 anos a mediana é 47 anos e a média dos inquiridos é de 48,53 anos o primeiro quartil corresponde a 34, ou seja 25 % das pessoas têm menos de 25 anos e o terceiro quartil corresponde a 64 anos, ou seja 25 % das pessoas têm mais de 64 ano
+Em relação aos anos de escolaridade o valor minimo é um ano de escolaridade e o valor máximo é 24 anos de escolaridade, a média dos inquiridos é 7.174 anos de escolaridade e a mediana é o sexto ano. o primeiro quartil corresponde ao quarto ano, ou seja 25 por cento das pessoas inquiridas tem menos do que o quarto ano e o terceiro quartil corresponde ao 10 ano, ou seja 25 por cento das pessoas inquiridas tem mais do que o décimo ano.
+Para terminar temos o agregado familiar em que o minimo é um membro e o máximo é 20 membros, a média do tamanho do agregado familiar é 6.788. A mediana é 6, o primeiro quartil é 5, o que significa que 25% dos agregados são inferiores a 5 e o terceiro quartil é 9o que significa que 25 % dos agregados tem mais de 9.
 
+# 5.3
+```{r}
+library(ggplot2)
+plot(data$idade)
+hist(data$agregado)
+ggplot(data, aes(x = pPreocuparDemasiado, y = agregado))+geom_point()
 
+```
+Pela o primeiro gráfico verificamos que de um modo geral este questionário atingiu um público com idades muito variadas desde os 18 aos 87 anos visivel pela distribuição aglomerada dos pontos em todo o gráfico.
+Pela análise do segundo gráfico verificamos que a grande na maioria dos inquiridos, os seus respetivos agregados são compostos entre 5 a 10 elementos sendo aquele que possui o valor máximo o 5 que corresponde a aproximadamente 300 dis inquiridos.
+Em relação ao último gráfico concluimos que na resposta ao pPreocuparDemasiado verificou-se uma distribuição uniforme tendo em conta o agregado familiar dos inquiridos, ou seja, em todos os escalões do agregado familiar houve respostas diferentes, o que revela que não existe uma relação direta entre estas duas variaveis.
 

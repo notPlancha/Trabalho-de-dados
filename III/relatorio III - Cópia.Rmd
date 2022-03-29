@@ -67,10 +67,6 @@ perc_tab_v15
 tab_v15_sexo
 perc_tab_v15_sexo
 
-
-
-
->>>>>>> f7caaf330dc73a28edd6477ae0d1e09e2fb26ba2
 ```
 Pode-se então concluir pela visualização desta tabela que a maior parte dos inquiridos vive num meio rural correspondendo a 408 dos inquiridos que corresponde a cerca de 47 pontos percentuais do total. Pela análise da tabela verifica-se que a população inquirida atinge os polos visto que são os extremos os mais afetados. Nas zonas urbanas registou-se 345 inquiridos correspondendo a cerca de 40 por cento e por ultimo a minoria reside nas zonas suburbanas com um valor absoluto de 105 e uma percentagem de cerca de 12 por cento do total.
  
