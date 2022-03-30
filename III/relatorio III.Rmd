@@ -97,6 +97,7 @@ Para terminar temos o agregado familiar em que o minimo é um membro e o máximo
 ```{r}
 library(ggplot2)
 
+##Gráfico 1a)
 #Homens
 h <- data$pAnimaisExperiencias[which(data$sexo == "Masculino")]
 tab_h <- prop.table(table(h)) * 100
@@ -106,9 +107,9 @@ names(ph) <- c("Concordo Totalmente", "Concordo Parcialmente", "Discordo Totalme
 etiquetah <- paste(ph, "%")
 etiquetah <- paste(names(ph), ": ", etiquetah)
 
-
 pie(ph, labels = etiquetah, main = "Resposta dos Homens á pergunta: é correcto usar animais em experiências médicas se isso contribuir para salvar vidas humanas?")
 
+##Gráfico 1b)
 #Mulheres
 m <- data$pAnimaisExperiencias[which(data$sexo == "Feminino")]
 tab_m <- prop.table(table(m)) * 100
@@ -118,15 +119,31 @@ names(pm) <- c("Concordo Totalmente", "Concordo Parcialmente", "Discordo Totalme
 etiquetam <- paste(pm, "%")
 etiquetam <- paste(names(pm), ": ", etiquetam)
 
-
 pie(pm, labels = etiquetam, main = "Resposta das Mulheres á pergunta: é correcto usar animais em experiências médicas se isso contribuir para salvar vidas humanas?")
 
+##Gráfico 2
 plot(data$idade)
+
+##Gráfico 3
 hist(data$agregado)
+
+##Gráfico 4
 ggplot(data, aes(x = pPreocuparDemasiado, y = agregado))+geom_point()
 
 ```
-Pela o primeiro gráfico verificamos que de um modo geral este questionário atingiu um público com idades muito variadas desde os 18 aos 87 anos visivel pela distribuição aglomerada dos pontos em todo o gráfico.
-Pela análise do segundo gráfico verificamos que a grande na maioria dos inquiridos, os seus respetivos agregados são compostos entre 5 a 10 elementos sendo aquele que possui o valor máximo o 5 que corresponde a aproximadamente 300 dis inquiridos.
-Em relação ao último gráfico concluimos que na resposta ao pPreocuparDemasiado verificou-se uma distribuição uniforme tendo em conta o agregado familiar dos inquiridos, ou seja, em todos os escalões do agregado familiar houve respostas diferentes, o que revela que não existe uma relação direta entre estas duas variaveis.
+
+Gráfico 1a e 1b
+    O primeiro Gráfico circular mostra-nos as várias respostas dos inquiridos do sexo masculino à questão "É correcto usar animais em experiências médicas se isso contribuir para salvar vidas humanas". Para além disso, mostra-nos em percentagem dos homens inquiridos, a ponderação das várias respostas e a sua ausência.   
+    O segundo é vocacionado da mesma forma, mas agora consideram-se todas as mulheres inquiridas.
+    Ao compararmos ambos estes gráficos circulares, apercebemo-nos que a opinião masculina e feminina em torno da afirmação  é bastante semelhante. Desta forma, podemos concluir que ambos os sexos tendem a concordar com a afirmação e que o grau de concordância costuma ser "Concordo Parcialmente". 
+    Em adição a esta conclusão geral, podemos denotar que os homens que responderam "Concordo Totalmente" a esta questão foram aproximadamente aproximadamente mais 5 pontos percentuais que as mulheres, nos respetivos gráficos.
+
+(a ver a partir daqui!)
+Gráfico 2
+    Pela o primeiro gráfico verificamos que de um modo geral este questionário atingiu um público com idades muito variadas desde os 18 aos 87 anos visivel pela distribuição aglomerada dos pontos em todo o gráfico.
+
+
+Gráfico 3
+    Pela análise do segundo gráfico verificamos que a grande na maioria dos inquiridos, os seus respetivos agregados são compostos entre 5 a 10 elementos sendo aquele que possui o valor máximo o 5 que corresponde a aproximadamente 300 dis inquiridos.
+    Em relação ao último gráfico concluimos que na resposta ao pPreocuparDemasiado verificou-se uma distribuição uniforme tendo em conta o agregado familiar dos inquiridos, ou seja, em todos os escalões do agregado familiar houve respostas diferentes, o que revela que não existe uma relação direta entre estas duas variaveis.
 
