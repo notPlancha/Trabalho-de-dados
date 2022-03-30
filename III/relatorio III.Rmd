@@ -140,10 +140,11 @@ Gráfico 1a e 1b
 
 (a ver a partir daqui!)
 Gráfico 2
-    Pela o primeiro gráfico verificamos que de um modo geral este questionário atingiu um público com idades muito variadas desde os 18 aos 87 anos visivel pela distribuição aglomerada dos pontos em todo o gráfico.
-
+    Ao analisar este gráfico, verificamos que, de um modo geral este questionário atingiu um público com idades muito variadas desde os 18 aos 87 anos. Assim, podemos observar que, no gráfico 2 os pontos estão bastante distribuidos e que não há grandes aglomerados em idades específicas.
 
 Gráfico 3
-    Pela análise do segundo gráfico verificamos que a grande na maioria dos inquiridos, os seus respetivos agregados são compostos entre 5 a 10 elementos sendo aquele que possui o valor máximo o 5 que corresponde a aproximadamente 300 dis inquiridos.
-    Em relação ao último gráfico concluimos que na resposta ao pPreocuparDemasiado verificou-se uma distribuição uniforme tendo em conta o agregado familiar dos inquiridos, ou seja, em todos os escalões do agregado familiar houve respostas diferentes, o que revela que não existe uma relação direta entre estas duas variaveis.
+     O gráfico 3, revela a distribuição dos agregados dos vários inquiridos. Com a observação deste histograma, verificamos que na grande na maioria dos inquiridos, os seus respetivos agregados são compostos entre 5 a 10 elementos sendo aquele que possui o valor máximo o 5 que corresponde a aproximadamente 300 dos inquiridos.
+    
+Gráfico 4
+    Relativamente ao último gráfico, concluimos que na resposta ao pPreocuparDemasiado verificou-se uma distribuição uniforme tendo em conta o agregado familiar dos inquiridos, ou seja, em todos os escalões do agregado familiar houve respostas diferentes, o que revela que não existe uma relação direta entre estas duas variaveis.
 
