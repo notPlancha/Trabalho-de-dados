@@ -6,16 +6,18 @@ output: html_document
 ---
 # 1
 ```{r}
-#Auto path
+##Auto path
+
 #install.packages("here")
 library(here)
 pathh <- here("I", "transformado.xlsx")
 
-#manual path
+##manual path
+
 #pathh <- r'{}'
 #install.packages("readxl")
 
-#get dataframe
+##get dataframe
 data <- readxl::read_excel(pathh)
 class(data)
 ```
@@ -31,47 +33,62 @@ colnames(data)
 ```
 # 3
 ```{r}
-#if yhey are empty
+###Tratamento (Parte I)
+
+##if they are empty
+
 #Omissos <- is.na(data$idade)
 
-#if they are with a direct value of NA
+##if they are with a direct value of "NA"
+
 Omissos <- data$idade == "NA"
+
+#Number of missing values or "NA's" in the dataframe variable of "idades"
 which(Omissos)
 ```
 
 # 4
 ```{r}
+###Tratamento (Parte II)
+
 median(data$idade[which(!Omissos)]) -> data$idade[which(Omissos)]
+data$idade <- as.numeric(data$idade)
+
 ```
 
 # 5
 ```{r}
-fa = table(data$urbrural)
-perc = 100*prop.table(fa)
-tabela = cbind(fa, perc)
+#Tabela com a frequência absoluta
+Frequência_Absoluta = table(data$urbrural)
+#Tabela com percentagens
+Percentagem_Correspondente = 100*prop.table(Frequência_Absoluta)
+tabela = cbind(Frequência_Absoluta, Percentagem_Correspondente)
 ```
 Pode-se então concluir pela visualização desta tabela que a maior parte dos inquiridos vive num meio rural correspondendo a 408 dos inquiridos que corresponde a cerca de 47 pontos percentuais do total. Pela análise da tabela verifica-se que a população inquirida atinge os polos visto que são os extremos os mais afetados. Nas zonas urbanas registou-se 345 inquiridos correspondendo a cerca de 40 por cento e por ultimo a minoria reside nas zonas suburbanas com um valor absoluto de 105 e uma percentagem de cerca de 12 por cento do total.
- 
- ´´´{r}
-fa1 = table(data$pTudoPrejudica)
-perc1 = 100*prop.table(fa1)
-tabela1 = cbind(fa1, perc1)
-´´´
+
 Segundo esta tabela a maior parte dos inquiridos concorda que tudo o que fazemos perjudica o ambiente embora alguns apresentem uma ideia mais extremista que corresponde a 412 dos inquiridos e cerca de 48 por cento do total e outros têm uma perspetiva mais intermediária (216 dos inquiridos e cerca de 25 por cento do total) a parte dos inquiridos que nao tem opiniao formada sobre isso corresponde 117 dos inquiridos, cerca de 13 por cento do total. As pessoas que discordaram parcialmente correspondem foi de 77 dos inquiridos com cerca de 9 por cento, e por ultimo os inquiridos que discordaram totalmente foram 8 cerca de 1 por cento do total. Houve ainda uma parte que nem sequer respondeu a este campo mais precisamente 30 pessoas que correspondem a cerca de 3 por cento do total.
+
 # 5.2
-´´´{r}
-median(data$anos_esc[which(!Omissos)]) -> data$anos_esc[which(Omissos)]
+```{r}
+#Tratamento dos dados
 
-median(data$agregado[which(!Omissos)]) -> data$agregado[which(Omissos)]
+Omissos_anos <- data$anos_esc == "NA"
+median(data$anos_esc[which(!Omissos_anos)]) -> data$anos_esc[which(Omissos_anos)]
+data$anos_esc <- as.numeric(data$anos_esc)
 
-data$idade<-as.numeric((data$idade))
-data$anos_esc<-as.numeric((data$anos_esc))
-data$agregado<-as.numeric((data$agregado))
+Omissos_agreg <- data$agregado == "NA"
+median(data$agregado[which(!Omissos_agreg)]) -> data$agregado[which(Omissos_agreg)]
+data$agregado <- as.numeric(data$agregado)
 
+#A idade já foi tratada nos pontos 3 e 4
+
+#Descrição das variáveis
 summary(data$idade)
 summary(data$anos_esc)
 summary(data$agregado)
-´´´
+
+```
+
 Pela análise dos dados obtidos neste código verificamos que os inquiridos têm entre 18 e 87 anos a mediana é 47 anos e a média dos inquiridos é de 48,53 anos o primeiro quartil corresponde a 34, ou seja 25 % das pessoas têm menos de 25 anos e o terceiro quartil corresponde a 64 anos, ou seja 25 % das pessoas têm mais de 64 ano
 Em relação aos anos de escolaridade o valor minimo é um ano de escolaridade e o valor máximo é 24 anos de escolaridade, a média dos inquiridos é 7.174 anos de escolaridade e a mediana é o sexto ano. o primeiro quartil corresponde ao quarto ano, ou seja 25 por cento das pessoas inquiridas tem menos do que o quarto ano e o terceiro quartil corresponde ao 10 ano, ou seja 25 por cento das pessoas inquiridas tem mais do que o décimo ano.
 Para terminar temos o agregado familiar em que o minimo é um membro e o máximo é 20 membros, a média do tamanho do agregado familiar é 6.788. A mediana é 6, o primeiro quartil é 5, o que significa que 25% dos agregados são inferiores a 5 e o terceiro quartil é 9o que significa que 25 % dos agregados tem mais de 9.
@@ -79,6 +96,31 @@ Para terminar temos o agregado familiar em que o minimo é um membro e o máximo
 # 5.3
 ```{r}
 library(ggplot2)
+
+#Homens
+h <- data$pAnimaisExperiencias[which(data$sexo == "Masculino")]
+tab_h <- prop.table(table(h)) * 100
+
+ph <- c(30.02, 39.94, 3.68, 10.76, 10.76, 4.82)
+names(ph) <- c("Concordo Totalmente", "Concordo Parcialmente", "Discordo Totalmente", "Discordo Parcialmente", "Indiferente", "Não Respondido")
+etiquetah <- paste(ph, "%")
+etiquetah <- paste(names(ph), ": ", etiquetah)
+
+
+pie(ph, labels = etiquetah, main = "Resposta dos Homens á pergunta: é correcto usar animais em experiências médicas se isso contribuir para salvar vidas humanas?")
+
+#Mulheres
+m <- data$pAnimaisExperiencias[which(data$sexo == "Feminino")]
+tab_m <- prop.table(table(m)) * 100
+
+pm <- c(25.05, 39.25, 6.7, 9.7, 14.4, 4.9)
+names(pm) <- c("Concordo Totalmente", "Concordo Parcialmente", "Discordo Totalmente", "Discordo Parcialmente", "Indiferente", "Não Respondido")
+etiquetam <- paste(pm, "%")
+etiquetam <- paste(names(pm), ": ", etiquetam)
+
+
+pie(pm, labels = etiquetam, main = "Resposta das Mulheres á pergunta: é correcto usar animais em experiências médicas se isso contribuir para salvar vidas humanas?")
+
 plot(data$idade)
 hist(data$agregado)
 ggplot(data, aes(x = pPreocuparDemasiado, y = agregado))+geom_point()
