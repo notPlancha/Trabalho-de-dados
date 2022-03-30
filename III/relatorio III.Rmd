@@ -9,12 +9,12 @@ output: html_document
 ##Auto path
 
 #install.packages("here")
-library(here)
-pathh <- here("I", "transformado.xlsx")
+#library(here)
+#pathh <- here("I", "transformado.xlsx")
 
 ##manual path
 
-#pathh <- r'{}'
+pathh <- r'{C:\Users\Andre\Documents\Desktop\projeto dados\Trabalho-de-dados\Trabalho-de-dados\I\Transformado.xlsx}'
 #install.packages("readxl")
 
 ##get dataframe
@@ -31,10 +31,8 @@ class(data)
 "pMundoMelhorar" -> colnames(data)[which(names(data) == "v72")]
 colnames(data)
 ```
-# 3
+# 3 - Tratamento (Parte I)
 ```{r}
-###Tratamento (Parte I)
-
 ##if they are empty
 
 #Omissos <- is.na(data$idade)
@@ -70,13 +68,13 @@ median(data$agregado[which(!Omissos_agreg)]) -> data$agregado[which(Omissos_agre
 data$agregado <- as.numeric(data$agregado)
 
 #Tabelas
-Frequência_Absoluta_anos_esc = table(data$anos_esc)
-Percentagem_Correspondente_anos_esc = 100*prop.table(Frequência_Absoluta_anos_esc)
-Anos_de_escolaridade = cbind(Frequência_Absoluta_anos_esc, Percentagem_Correspondente_anos_esc)
+Frequência_Absoluta_anos_esc <- table(data$anos_esc)
+Percentagem_Correspondente_anos_esc <- 100*prop.table(Frequência_Absoluta_anos_esc)
+Anos_de_escolaridade <- cbind(Frequência_Absoluta_anos_esc, Percentagem_Correspondente_anos_esc)
 
-Frequência_Absoluta_urbrural = table(data$urbrural)
-Percentagem_Correspondente_urbrural = 100*prop.table(Frequência_Absoluta)
-urbrural = cbind(Frequência_Absoluta, Percentagem_Correspondente)
+Frequência_Absoluta_urbrural <- table(data$urbrural)
+Percentagem_Correspondente_urbrural <- 100*prop.table(Frequência_Absoluta)
+urbrural <- cbind(Frequência_Absoluta, Percentagem_Correspondente)
 ```
 Pode-se então concluir pela visualização desta tabela que a maior parte dos inquiridos vive num meio rural correspondendo a 408 dos inquiridos que corresponde a cerca de 47 pontos percentuais do total. Pela análise da tabela verifica-se que a população inquirida atinge os polos visto que são os extremos os mais afetados. Nas zonas urbanas registou-se 345 inquiridos correspondendo a cerca de 40 por cento e por ultimo a minoria reside nas zonas suburbanas com um valor absoluto de 105 e uma percentagem de cerca de 12 por cento do total.
 
@@ -101,47 +99,32 @@ Para terminar temos o agregado familiar em que o minimo é um membro e o máximo
 # 5.3
 ```{r}
 library(ggplot2)
+#Grafico 1
+data$pAnimaisExperiencias <- factor(data$pAnimaisExperiencias, levels=rev(c("Concordo totalmente", "Concordo parcialmente", "Nao condordo nem discordo","Discordo parcialmente", "Discordo totalmente")))
+ggplot(data=data, mapping= aes(x = pAnimaisExperiencias, fill=sexo)) + geom_bar(position = "dodge")  + coord_flip()
 
-##Gráfico 1a)
-#Homens
-h <- data$pAnimaisExperiencias[which(data$sexo == "Masculino")]
-tab_h <- prop.table(table(h)) * 100
-
-ph <- c(30.02, 39.94, 3.68, 10.76, 10.76, 4.82)
-names(ph) <- c("Concordo Totalmente", "Concordo Parcialmente", "Discordo Totalmente", "Discordo Parcialmente", "Indiferente", "Não Respondido")
-etiquetah <- paste(ph, "%")
-etiquetah <- paste(names(ph), ": ", etiquetah)
-
-pie(ph, labels = etiquetah, main = "Resposta dos Homens á pergunta: é correcto usar animais em experiências médicas se isso contribuir para salvar vidas humanas?")
-
-##Gráfico 1b)
-#Mulheres
-m <- data$pAnimaisExperiencias[which(data$sexo == "Feminino")]
-tab_m <- prop.table(table(m)) * 100
-
-pm <- c(25.05, 39.25, 6.7, 9.7, 14.4, 4.9)
-names(pm) <- c("Concordo Totalmente", "Concordo Parcialmente", "Discordo Totalmente", "Discordo Parcialmente", "Indiferente", "Não Respondido")
-etiquetam <- paste(pm, "%")
-etiquetam <- paste(names(pm), ": ", etiquetam)
-
-pie(pm, labels = etiquetam, main = "Resposta das Mulheres á pergunta: é correcto usar animais em experiências médicas se isso contribuir para salvar vidas humanas?")
+data %>%
+  count(sexo, pAnimaisExperiencias) %>%
+  group_by(sexo) %>%
+  mutate(freq = n/sum(n)) %>%
+  ggplot(aes(x = pAnimaisExperiencias, y = freq, fill = sexo)) +
+  geom_bar(position = 'dodge', stat="identity") + coord_flip()
 
 ##Gráfico 2
-plot(data$idade, main = "Dístribuição da idade dos inquiridos", xlab = "Índices dos vários inquiridos", ylab = "Idades", col = "blue")
+ggplot(data = data, aes(x = idade, y = ..count..)) + geom_density(alpha = .2, fill = "blue")
 
 ##Gráfico 3
-hist(data$agregado, main = "Distribuição do agregado dos inquiridos", xlab = "Agregados", ylab = "Inquiridos", col = "red")
+hist(data$agregado, main = "Distribuicao do agregado dos inquiridos", xlab = "Agregados", ylab = "Inquiridos", col = "red", prob=TRUE)
 
 ##Gráfico 4
-ggplot(data, aes(x = pPreocuparDemasiado, y = agregado)) + geom_point()
-(Preciso de ajuda para meter titulo e tirara a label no x)
+ggplot2::qplot(data = data, x = agregado, y= pPreocuparDemasiado, geom="boxplot", main = "Variacao do agregado familiar abseado na resposta pPreocuparDemasiado")
 
 ```
 
 Gráfico 1a e 1b
-    O primeiro Gráfico circular mostra-nos as várias respostas dos inquiridos do sexo masculino à questão "É correcto usar animais em experiências médicas se isso contribuir para salvar vidas humanas". Para além disso, mostra-nos em percentagem dos homens inquiridos, a ponderação das várias respostas e a sua ausência.   
+    O primeiro Gráfico circular mostra-nos as várias respostas dos inquiridos do sexo masculino à questão "É correcto usar animais em experiências médicas se isso contribuir para salvar vidas humanas". Para além disso, mostra-nos em percentagem dos homens inquiridos, a ponderação das várias respostas e a sua ausência.
     O segundo é vocacionado da mesma forma, mas agora consideram-se todas as mulheres inquiridas.
-    Ao compararmos ambos estes gráficos circulares, apercebemo-nos que a opinião masculina e feminina em torno da afirmação  é bastante semelhante. Desta forma, podemos concluir que ambos os sexos tendem a concordar com a afirmação e que o grau de concordância costuma ser "Concordo Parcialmente". 
+    Ao compararmos ambos estes gráficos circulares, apercebemo-nos que a opinião masculina e feminina em torno da afirmação  é bastante semelhante. Desta forma, podemos concluir que ambos os sexos tendem a concordar com a afirmação e que o grau de concordância costuma ser "Concordo Parcialmente".
     Em adição a esta conclusão geral, podemos denotar que os homens que responderam "Concordo Totalmente" a esta questão foram aproximadamente aproximadamente mais 5 pontos percentuais que as mulheres, nos respetivos gráficos.
 
 (a ver a partir daqui!)
