@@ -58,19 +58,8 @@ data$idade <- as.numeric(data$idade)
 
 # 5
 ```{r}
-#Tabela com a frequência absoluta
-Frequência_Absoluta = table(data$urbrural)
-#Tabela com percentagens
-Percentagem_Correspondente = 100*prop.table(Frequência_Absoluta)
-tabela = cbind(Frequência_Absoluta, Percentagem_Correspondente)
-```
-Pode-se então concluir pela visualização desta tabela que a maior parte dos inquiridos vive num meio rural correspondendo a 408 dos inquiridos que corresponde a cerca de 47 pontos percentuais do total. Pela análise da tabela verifica-se que a população inquirida atinge os polos visto que são os extremos os mais afetados. Nas zonas urbanas registou-se 345 inquiridos correspondendo a cerca de 40 por cento e por ultimo a minoria reside nas zonas suburbanas com um valor absoluto de 105 e uma percentagem de cerca de 12 por cento do total.
 
-Segundo esta tabela a maior parte dos inquiridos concorda que tudo o que fazemos perjudica o ambiente embora alguns apresentem uma ideia mais extremista que corresponde a 412 dos inquiridos e cerca de 48 por cento do total e outros têm uma perspetiva mais intermediária (216 dos inquiridos e cerca de 25 por cento do total) a parte dos inquiridos que nao tem opiniao formada sobre isso corresponde 117 dos inquiridos, cerca de 13 por cento do total. As pessoas que discordaram parcialmente correspondem foi de 77 dos inquiridos com cerca de 9 por cento, e por ultimo os inquiridos que discordaram totalmente foram 8 cerca de 1 por cento do total. Houve ainda uma parte que nem sequer respondeu a este campo mais precisamente 30 pessoas que correspondem a cerca de 3 por cento do total.
-
-# 5.2
-```{r}
-#Tratamento dos dados
+#Tratamento dos dados III
 
 Omissos_anos <- data$anos_esc == "NA"
 median(data$anos_esc[which(!Omissos_anos)]) -> data$anos_esc[which(Omissos_anos)]
@@ -79,6 +68,22 @@ data$anos_esc <- as.numeric(data$anos_esc)
 Omissos_agreg <- data$agregado == "NA"
 median(data$agregado[which(!Omissos_agreg)]) -> data$agregado[which(Omissos_agreg)]
 data$agregado <- as.numeric(data$agregado)
+
+#Tabelas
+Frequência_Absoluta_anos_esc = table(data$anos_esc)
+Percentagem_Correspondente_anos_esc = 100*prop.table(Frequência_Absoluta_anos_esc)
+Anos_de_escolaridade = cbind(Frequência_Absoluta_anos_esc, Percentagem_Correspondente_anos_esc)
+
+Frequência_Absoluta_urbrural = table(data$urbrural)
+Percentagem_Correspondente_urbrural = 100*prop.table(Frequência_Absoluta)
+urbrural = cbind(Frequência_Absoluta, Percentagem_Correspondente)
+```
+Pode-se então concluir pela visualização desta tabela que a maior parte dos inquiridos vive num meio rural correspondendo a 408 dos inquiridos que corresponde a cerca de 47 pontos percentuais do total. Pela análise da tabela verifica-se que a população inquirida atinge os polos visto que são os extremos os mais afetados. Nas zonas urbanas registou-se 345 inquiridos correspondendo a cerca de 40 por cento e por ultimo a minoria reside nas zonas suburbanas com um valor absoluto de 105 e uma percentagem de cerca de 12 por cento do total.
+
+Segundo esta tabela a maior parte dos inquiridos concorda que tudo o que fazemos perjudica o ambiente embora alguns apresentem uma ideia mais extremista que corresponde a 412 dos inquiridos e cerca de 48 por cento do total e outros têm uma perspetiva mais intermediária (216 dos inquiridos e cerca de 25 por cento do total) a parte dos inquiridos que nao tem opiniao formada sobre isso corresponde 117 dos inquiridos, cerca de 13 por cento do total. As pessoas que discordaram parcialmente correspondem foi de 77 dos inquiridos com cerca de 9 por cento, e por ultimo os inquiridos que discordaram totalmente foram 8 cerca de 1 por cento do total. Houve ainda uma parte que nem sequer respondeu a este campo mais precisamente 30 pessoas que correspondem a cerca de 3 por cento do total.
+
+# 5.2
+```{r}
 
 #A idade já foi tratada nos pontos 3 e 4
 
@@ -122,13 +127,14 @@ etiquetam <- paste(names(pm), ": ", etiquetam)
 pie(pm, labels = etiquetam, main = "Resposta das Mulheres á pergunta: é correcto usar animais em experiências médicas se isso contribuir para salvar vidas humanas?")
 
 ##Gráfico 2
-plot(data$idade)
+plot(data$idade, main = "Dístribuição da idade dos inquiridos", xlab = "Índices dos vários inquiridos", ylab = "Idades", col = "blue")
 
 ##Gráfico 3
-hist(data$agregado)
+hist(data$agregado, main = "Distribuição do agregado dos inquiridos", xlab = "Agregados", ylab = "Inquiridos", col = "red")
 
 ##Gráfico 4
-ggplot(data, aes(x = pPreocuparDemasiado, y = agregado))+geom_point()
+ggplot(data, aes(x = pPreocuparDemasiado, y = agregado)) + geom_point()
+(Preciso de ajuda para meter titulo e tirara a label no x)
 
 ```
 
