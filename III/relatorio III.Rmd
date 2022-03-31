@@ -7,12 +7,17 @@ output: html_document
 # 1 - Importação do ficheiro Excel
 ```{r}
 ##Auto path
+
+#packages
 #install.packages("here")
-#library(here)
-#pathh <- here("I", "transformado.xlsx")
-##manual path
-pathh <- r'{C:\Users\Andre\Documents\Desktop\projeto dados\Trabalho-de-dados\Trabalho-de-dados\I\Transformado.xlsx}'
 #install.packages("readxl")
+#install.packages("Dplyr")
+#install.packages("ggplot2")
+
+library(here)
+pathh <- here("I", "transformado.xlsx")
+##manual path
+#pathh <- r'{}'
 ##get dataframe
 data <- readxl::read_excel(pathh)
 class(data)
@@ -61,8 +66,8 @@ Frequência_Absoluta_anos_esc <- table(data$anos_esc)
 Percentagem_Correspondente_anos_esc <- 100*prop.table(Frequência_Absoluta_anos_esc)
 Anos_de_escolaridade <- cbind(Frequência_Absoluta_anos_esc, Percentagem_Correspondente_anos_esc)
 Frequência_Absoluta_urbrural <- table(data$urbrural)
-Percentagem_Correspondente_urbrural <- 100*prop.table(Frequência_Absoluta)
-urbrural <- cbind(Frequência_Absoluta, Percentagem_Correspondente)
+Percentagem_Correspondente_urbrural <- 100*prop.table(Frequência_Absoluta_urbrural)
+urbrural <- cbind(Frequência_Absoluta_urbrural, Percentagem_Correspondente_urbrural)
 ```
 
     Pode-se então concluir pela visualização desta tabela que a maior parte dos inquiridos vive num meio rural correspondendo a 408 dos inquiridos que corresponde a cerca de 47 pontos percentuais do total. Pela análise da tabela verifica-se que a população inquirida atinge os polos visto que são os extremos os mais afetados. Nas zonas urbanas registou-se 345 inquiridos correspondendo a cerca de 40 por cento e por ultimo a minoria reside nas zonas suburbanas com um valor absoluto de 105 e uma percentagem de cerca de 12 por cento do total.
@@ -83,6 +88,7 @@ summary(data$agregado)
 
 c) Análise dos dados através de gráficos
 ```{r}
+
 library(ggplot2)
 library(dplyr)
 
