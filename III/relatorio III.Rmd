@@ -4,24 +4,20 @@ author: ""
 date:""
 output: html_document
 ---
-# 1
+# 1 - Importação do ficheiro Excel
 ```{r}
 ##Auto path
-
 #install.packages("here")
 #library(here)
 #pathh <- here("I", "transformado.xlsx")
-
 ##manual path
-
 pathh <- r'{C:\Users\Andre\Documents\Desktop\projeto dados\Trabalho-de-dados\Trabalho-de-dados\I\Transformado.xlsx}'
 #install.packages("readxl")
-
 ##get dataframe
 data <- readxl::read_excel(pathh)
 class(data)
 ```
-# 2
+# 2 - Mudar o nome de 2 variáveis
 ```{r}
 "pTudoPrejudica" -> colnames(data)[which(names(data) == "v12")]
 "pPreocuparDemasiado" -> colnames(data)[which(names(data) == "v13")]
@@ -31,78 +27,74 @@ class(data)
 "pMundoMelhorar" -> colnames(data)[which(names(data) == "v72")]
 colnames(data)
 ```
-# 3 - Tratamento (Parte I)
+# 3 - Tratamento dos dados (Parte I)
+(Identificação dos valores omissos)
 ```{r}
 ##if they are empty
-
 #Omissos <- is.na(data$idade)
-
 ##if they are with a direct value of "NA"
-
 Omissos <- data$idade == "NA"
-
 #Number of missing values or "NA's" in the dataframe variable of "idades"
 which(Omissos)
 ```
 
-# 4
+# 4 - Tratamento (Parte II)
+(Imputação dos valores omissos de uma variável, com a mediana dos seus outros valores)
 ```{r}
-###Tratamento (Parte II)
-
 median(data$idade[which(!Omissos)]) -> data$idade[which(Omissos)]
 data$idade <- as.numeric(data$idade)
-
 ```
 
-# 5
+# 5 - Análise Descritiva dos Dados
+
+a) - Tabelas de frequência com valores absolutos e percentagens
 ```{r}
-
 #Tratamento dos dados III
-
 Omissos_anos <- data$anos_esc == "NA"
 median(data$anos_esc[which(!Omissos_anos)]) -> data$anos_esc[which(Omissos_anos)]
 data$anos_esc <- as.numeric(data$anos_esc)
-
 Omissos_agreg <- data$agregado == "NA"
 median(data$agregado[which(!Omissos_agreg)]) -> data$agregado[which(Omissos_agreg)]
 data$agregado <- as.numeric(data$agregado)
-
 #Tabelas
 Frequência_Absoluta_anos_esc <- table(data$anos_esc)
 Percentagem_Correspondente_anos_esc <- 100*prop.table(Frequência_Absoluta_anos_esc)
 Anos_de_escolaridade <- cbind(Frequência_Absoluta_anos_esc, Percentagem_Correspondente_anos_esc)
-
 Frequência_Absoluta_urbrural <- table(data$urbrural)
 Percentagem_Correspondente_urbrural <- 100*prop.table(Frequência_Absoluta)
 urbrural <- cbind(Frequência_Absoluta, Percentagem_Correspondente)
 ```
-Pode-se então concluir pela visualização desta tabela que a maior parte dos inquiridos vive num meio rural correspondendo a 408 dos inquiridos que corresponde a cerca de 47 pontos percentuais do total. Pela análise da tabela verifica-se que a população inquirida atinge os polos visto que são os extremos os mais afetados. Nas zonas urbanas registou-se 345 inquiridos correspondendo a cerca de 40 por cento e por ultimo a minoria reside nas zonas suburbanas com um valor absoluto de 105 e uma percentagem de cerca de 12 por cento do total.
 
-Segundo esta tabela a maior parte dos inquiridos concorda que tudo o que fazemos perjudica o ambiente embora alguns apresentem uma ideia mais extremista que corresponde a 412 dos inquiridos e cerca de 48 por cento do total e outros têm uma perspetiva mais intermediária (216 dos inquiridos e cerca de 25 por cento do total) a parte dos inquiridos que nao tem opiniao formada sobre isso corresponde 117 dos inquiridos, cerca de 13 por cento do total. As pessoas que discordaram parcialmente correspondem foi de 77 dos inquiridos com cerca de 9 por cento, e por ultimo os inquiridos que discordaram totalmente foram 8 cerca de 1 por cento do total. Houve ainda uma parte que nem sequer respondeu a este campo mais precisamente 30 pessoas que correspondem a cerca de 3 por cento do total.
+    Pode-se então concluir pela visualização desta tabela que a maior parte dos inquiridos vive num meio rural correspondendo a 408 dos inquiridos que corresponde a cerca de 47 pontos percentuais do total. Pela análise da tabela verifica-se que a população inquirida atinge os polos visto que são os extremos os mais afetados. Nas zonas urbanas registou-se 345 inquiridos correspondendo a cerca de 40 por cento e por ultimo a minoria reside nas zonas suburbanas com um valor absoluto de 105 e uma percentagem de cerca de 12 por cento do total.
+    Segundo esta tabela a maior parte dos inquiridos concorda que tudo o que fazemos perjudica o ambiente embora alguns apresentem uma ideia mais extremista que corresponde a 412 dos inquiridos e cerca de 48 por cento do total e outros têm uma perspetiva mais intermediária (216 dos inquiridos e cerca de 25 por cento do total) a parte dos inquiridos que nao tem opiniao formada sobre isso corresponde 117 dos inquiridos, cerca de 13 por cento do total. As pessoas que discordaram parcialmente correspondem foi de 77 dos inquiridos com cerca de 9 por cento, e por ultimo os inquiridos que discordaram totalmente foram 8 cerca de 1 por cento do total. Houve ainda uma parte que nem sequer respondeu a este campo mais precisamente 30 pessoas que correspondem a cerca de 3 por cento do total.
 
-# 5.2
+b) - Medidas descritivas de variáveis quantitativas
 ```{r}
-
 #A idade já foi tratada nos pontos 3 e 4
-
 #Descrição das variáveis
 summary(data$idade)
 summary(data$anos_esc)
 summary(data$agregado)
-
 ```
 
-Pela análise dos dados obtidos neste código verificamos que os inquiridos têm entre 18 e 87 anos a mediana é 47 anos e a média dos inquiridos é de 48,53 anos o primeiro quartil corresponde a 34, ou seja 25 % das pessoas têm menos de 25 anos e o terceiro quartil corresponde a 64 anos, ou seja 25 % das pessoas têm mais de 64 ano
-Em relação aos anos de escolaridade o valor minimo é um ano de escolaridade e o valor máximo é 24 anos de escolaridade, a média dos inquiridos é 7.174 anos de escolaridade e a mediana é o sexto ano. o primeiro quartil corresponde ao quarto ano, ou seja 25 por cento das pessoas inquiridas tem menos do que o quarto ano e o terceiro quartil corresponde ao 10 ano, ou seja 25 por cento das pessoas inquiridas tem mais do que o décimo ano.
-Para terminar temos o agregado familiar em que o minimo é um membro e o máximo é 20 membros, a média do tamanho do agregado familiar é 6.788. A mediana é 6, o primeiro quartil é 5, o que significa que 25% dos agregados são inferiores a 5 e o terceiro quartil é 9o que significa que 25 % dos agregados tem mais de 9.
+    Pela análise dos dados obtidos neste código verificamos que os inquiridos têm entre 18 e 87 anos a mediana é 47 anos e a média dos inquiridos é de 48,53 anos o primeiro quartil corresponde a 34, ou seja 25 % das pessoas têm menos de 25 anos e o terceiro quartil corresponde a 64 anos, ou seja 25 % das pessoas têm mais de 64 ano
+    Em relação aos anos de escolaridade o valor minimo é um ano de escolaridade e o valor máximo é 24 anos de escolaridade, a média dos inquiridos é 7.174 anos de escolaridade e a mediana é o sexto ano. o primeiro quartil corresponde ao quarto ano, ou seja 25 por cento das pessoas inquiridas tem menos do que o quarto ano e o terceiro quartil corresponde ao 10 ano, ou seja 25 por cento das pessoas inquiridas tem mais do que o décimo ano.
+    Para terminar temos o agregado familiar em que o minimo é um membro e o máximo é 20 membros, a média do tamanho do agregado familiar é 6.788. A mediana é 6, o primeiro quartil é 5, o que significa que 25% dos agregados são inferiores a 5 e o terceiro quartil é 9o que significa que 25 % dos agregados tem mais de 9.
 
-# 5.3
+c) Análise dos dados através de gráficos
 ```{r}
 library(ggplot2)
-#Grafico 1
-data$pAnimaisExperiencias <- factor(data$pAnimaisExperiencias, levels=rev(c("Concordo totalmente", "Concordo parcialmente", "Nao condordo nem discordo","Discordo parcialmente", "Discordo totalmente")))
-ggplot(data=data, mapping= aes(x = pAnimaisExperiencias, fill=sexo)) + geom_bar(position = "dodge")  + coord_flip()
+library(dplyr)
 
+###Grafico 1
+
+data$pAnimaisExperiencias <- factor(data$pAnimaisExperiencias, levels=rev(c("Concordo totalmente", "Concordo parcialmente", "Nao condordo nem discordo","Discordo parcialmente", "Discordo totalmente")))
+
+##Grafico com as Frequencias Absolutas dos homens e mulheres que responderam a cada pergunta
+
+#ggplot(data=data, mapping= aes(x = pAnimaisExperiencias, fill=sexo)) + geom_bar(position = "dodge")  + coord_flip()
+
+##Gráfico igual ao anterior mas de proporções
 data %>%
   count(sexo, pAnimaisExperiencias) %>%
   group_by(sexo) %>%
@@ -110,30 +102,33 @@ data %>%
   ggplot(aes(x = pAnimaisExperiencias, y = freq, fill = sexo)) +
   geom_bar(position = 'dodge', stat="identity") + coord_flip()
 
+```
+
+    O duplo gráfico de barras ilustrado, mostra-nos as várias respostas dos inquiridos do sexo masculino e feminino (separadamente) à questão "É correcto usar animais em experiências médicas se isso contribuir para salvar vidas humanas". Em acrescento, é nos dada para cada resposta, a percentagem de homens e mulheres que escolheram aquela resposta, tal como a percentagem dos inquiridos que não respondeu. Estas percentagens, são feitas individualmente para cada sexo, ou seja, se a percentagem de homens para uma certa resposta for 30, isto significa que são 30 em cada 100 inquiridos do sexo masculino que responderam á pergunta dando essa resposta.
+    Ao visualizarmos bem o gráfico, apercebemo-nos que a opinião masculina e feminina em torno da afirmação é bastante semelhante. Desta forma, podemos concluir que ambos os sexos tendem a concordar com a afirmação e que o grau de concordância costuma ser "Concordo Parcialmente".
+    Em adição a esta conclusão geral, podemos denotar que os homens que responderam "Concordo Totalmente" a esta questão foram aproximadamente aproximadamente mais 5 pontos percentuais que as mulheres, nos respetivos gráficos.
+
+
+```{r}
 ##Gráfico 2
 ggplot(data = data, aes(x = idade, y = ..count..)) + geom_density(alpha = .2, fill = "blue")
 
+```
+
+    Ao analisar este gráfico, verificamos que, de um modo geral este questionário atingiu um público com idades muito variadas desde os 18 aos 87 anos. De qualquer das maneiras, a partir dos 70 anos podemos observar uma queda dos inquiridos.
+
+```{r}
 ##Gráfico 3
 hist(data$agregado, main = "Distribuicao do agregado dos inquiridos", xlab = "Agregados", ylab = "Inquiridos", col = "red", prob=TRUE)
 
+```
+
+     O gráfico 3, revela a distribuição dos agregados dos vários inquiridos. Com a observação deste histograma, verificamos que na grande na maioria dos inquiridos, os seus respetivos agregados são compostos entre 5 a 10 elementos sendo aquele que possui o valor máximo o 5 que corresponde a aproximadamente 300 dos inquiridos.
+
+```{r}
 ##Gráfico 4
-ggplot2::qplot(data = data, x = agregado, y= pPreocuparDemasiado, geom="boxplot", main = "Variacao do agregado familiar abseado na resposta pPreocuparDemasiado")
+ggplot2::qplot(data = data, x = agregado, y= pPreocuparDemasiado, geom="boxplot", main = "Variacao do agregado familiar baseado na resposta à pPreocuparDemasiado")
 
 ```
 
-Gráfico 1a e 1b
-    O primeiro Gráfico circular mostra-nos as várias respostas dos inquiridos do sexo masculino à questão "É correcto usar animais em experiências médicas se isso contribuir para salvar vidas humanas". Para além disso, mostra-nos em percentagem dos homens inquiridos, a ponderação das várias respostas e a sua ausência.
-    O segundo é vocacionado da mesma forma, mas agora consideram-se todas as mulheres inquiridas.
-    Ao compararmos ambos estes gráficos circulares, apercebemo-nos que a opinião masculina e feminina em torno da afirmação  é bastante semelhante. Desta forma, podemos concluir que ambos os sexos tendem a concordar com a afirmação e que o grau de concordância costuma ser "Concordo Parcialmente".
-    Em adição a esta conclusão geral, podemos denotar que os homens que responderam "Concordo Totalmente" a esta questão foram aproximadamente aproximadamente mais 5 pontos percentuais que as mulheres, nos respetivos gráficos.
-
-(a ver a partir daqui!)
-Gráfico 2
-    Ao analisar este gráfico, verificamos que, de um modo geral este questionário atingiu um público com idades muito variadas desde os 18 aos 87 anos. Assim, podemos observar que, no gráfico 2 os pontos estão bastante distribuidos e que não há grandes aglomerados em idades específicas.
-
-Gráfico 3
-     O gráfico 3, revela a distribuição dos agregados dos vários inquiridos. Com a observação deste histograma, verificamos que na grande na maioria dos inquiridos, os seus respetivos agregados são compostos entre 5 a 10 elementos sendo aquele que possui o valor máximo o 5 que corresponde a aproximadamente 300 dos inquiridos.
-    
-Gráfico 4
-    Relativamente ao último gráfico, concluimos que na resposta ao pPreocuparDemasiado verificou-se uma distribuição uniforme tendo em conta o agregado familiar dos inquiridos, ou seja, em todos os escalões do agregado familiar houve respostas diferentes, o que revela que não existe uma relação direta entre estas duas variaveis.
-
+    Relativamente ao gráfico 4, concluimos que na resposta ao pPreocuparDemasiado verificou-se uma distribuição uniforme tendo em conta o agregado familiar dos inquiridos, ou seja, em todos os escalões do agregado familiar houve respostas diferentes, o que revela que não existe uma relação direta entre estas duas variaveis.
