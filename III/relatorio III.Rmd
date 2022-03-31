@@ -106,7 +106,7 @@ data %>%
 
     O duplo gráfico de barras ilustrado, mostra-nos as várias respostas dos inquiridos do sexo masculino e feminino (separadamente) à questão "É correcto usar animais em experiências médicas se isso contribuir para salvar vidas humanas". Em acrescento, é nos dada para cada resposta, a percentagem de homens e mulheres que escolheram aquela resposta, tal como a percentagem dos inquiridos que não respondeu. Estas percentagens, são feitas individualmente para cada sexo, ou seja, se a percentagem de homens para uma certa resposta for 30, isto significa que são 30 em cada 100 inquiridos do sexo masculino que responderam á pergunta dando essa resposta.
     Ao visualizarmos bem o gráfico, apercebemo-nos que a opinião masculina e feminina em torno da afirmação é bastante semelhante. Desta forma, podemos concluir que ambos os sexos tendem a concordar com a afirmação e que o grau de concordância costuma ser "Concordo Parcialmente".
-    Em adição a esta conclusão geral, podemos denotar que os homens que responderam "Concordo Totalmente" a esta questão foram aproximadamente aproximadamente mais 5 pontos percentuais que as mulheres, nos respetivos gráficos.
+    Em adição a esta conclusão geral, podemos denotar que os homens que responderam "Concordo Totalmente" a esta questão foram aproximadamente aproximadamente mais 5 pontos percentuais que as mulheres.
 
 
 ```{r}
@@ -114,6 +114,8 @@ data %>%
 ggplot(data = data, aes(x = idade, y = ..count..)) + geom_density(alpha = .2, fill = "blue")
 
 ```
+
+#Gráfico 2 - Densidade de inquiridos por idade
 
     Ao analisar este gráfico, verificamos que, de um modo geral este questionário atingiu um público com idades muito variadas desde os 18 aos 87 anos. De qualquer das maneiras, a partir dos 70 anos podemos observar uma queda dos inquiridos.
 
@@ -131,4 +133,7 @@ ggplot2::qplot(data = data, x = agregado, y= pPreocuparDemasiado, geom="boxplot"
 
 ```
 
-    Relativamente ao gráfico 4, concluimos que na resposta ao pPreocuparDemasiado verificou-se uma distribuição uniforme tendo em conta o agregado familiar dos inquiridos, ou seja, em todos os escalões do agregado familiar houve respostas diferentes, o que revela que não existe uma relação direta entre estas duas variaveis.
+    O diagrama de extremos e quartis representado no gráfico 4 revela que, dos imquiridos que responderam à pergunta "as pessoas preocupam-se demasiado com os efeitos negativos do progresso sobre. o ambiente", cerca de 50% tem um agregado de 5 a 10 pessoas.
+    Observando este diagrama podemos retirar que a mediana costuma tomar os valores de 6 e 7 dividindo os nossos dados em dois segmentos de igual comprimento. Em adição, o primeiro quartil toma sempre o valor de 5 e o terceiro quartil assume como valores 9 e 10. 
+    Para além disso, a distribuição da amostra é assimétrica positiva, visto que os dados se concentram mais à esquerda do eixo do x. 
+    
