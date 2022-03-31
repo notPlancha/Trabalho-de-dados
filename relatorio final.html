@@ -11,7 +11,7 @@
 
 
 
-  <title>relatorio-III.knit</title>
+  <title>relatório final</title>
 
   <script>
     // Pandoc 2.9 adds attributes on both header and div. We remove the former (to
@@ -13612,9 +13612,152 @@
   <div class="container-fluid main-container">
     <div id="I-Excel">
       <div id="Intro-Excel" class="section level1">
-        <p>A primeira secção deste trabalho tem como objetivo explorar algumas ferramentas e funções do Excel, com o objetivo de se ter um eficiente tratamento dos dados. Este segmento do trabalho é um importante ponto de começo, não só porque dá um contacto direto com os dados e por sua vez algumas diretrizes acerca de como estes devem ser tratados tendo em conta a sua natureza, como também nos dá algum tratamento e limpeza. Para começar esta tarefa, foi criada uma nova folha vazia com as mesmas categorias da folha “dados”. Foi também adicionado códigos às restantes respostas às perguntas do inquérito.</p>
+        <p>A primeira secção deste trabalho tem como objetivo explorar algumas ferramentas e funções do Excel, com o
+          objetivo de se ter um eficiente tratamento dos dados. Este segmento do trabalho é um importante ponto de
+          começo, não só porque dá um contacto direto com os dados e por sua vez algumas diretrizes acerca de como estes
+          devem ser tratados tendo em conta a sua natureza, como também nos dá algum tratamento e limpeza. Para começar
+          esta tarefa, foi criada uma nova folha vazia com as mesmas categorias da folha “dados”. Foi também adicionado
+          códigos às restantes respostas às perguntas do inquérito.</p>
+      </div>
+      <div id="Excel-1" class="section level1">
+        <h2>1</h2>
+        <p>Esta primeira tarefa pede para “Aplicar o filtro a todas as variáveis e apresentar a primeira linha fixa”. O
+          filtro, não só ordena as linhas de qualquer variável que se queira, como também torna possível a seleção de
+          apenas certas linhas, dependendo do pretendido. Por outro lado, a afixação da primeira linha faz com que esta
+          fique sempre visível mesmo quando os dados são arrastados para baixo. Em conjunto, estas duas ferramentas
+          facilitam a identificação das colunas e a filtragem dos dados.</p>
+        <ol type="1">
+          <li>
+            <p>Ir a “Dados” na aba de cima do Excel.</p>
+          </li>
+          <li>
+            <p>Carregar na opção “Filtrar”.</p>
+          </li>
+        </ol>
+
+      </div>
+      <div id="Excel-2" class="section level1">
+        <h2>2</h2>
+        <p>O segundo ponto pedido consiste em “Atribuir de código de não resposta a uma variável com valores omissos”,
+          isto é, foram substituídas todas as respostas deixadas em branco por “NA”.</p>
+        <p><u>Procedimento</u></p>
+        <ol type="1">
+          <li>
+            <p>Utilizar a função IF com o valor lógico É.CEL.VAZIA</p>
+          </li>
+        </ol>
       </div>
     </div>
+    <div id="Excel-3" class="section level1">
+      <h2>3</h2>
+      <p>A terceira tarefa entende-se como “Atribuir texto às categorias de uma variável que tenha códigos”. Assim,
+        foram substituídos todos os valores codificados pela respetiva correspondência em texto, de forma a que a
+        leitura dos dados seja mais fácil e intuitiva.</p>
+      <p><u>Procedimento</u></p>
+      <ol type="1">
+        <li>
+          <p>Utilizar a função IF com o valor lógico É.NÚM, usando aqui as funções PROCV e PROCH quando adequado.</p>
+        </li>
+      </ol>
+    </div>
+  
+  <div id="Excel-4" class="section level1">
+    <h2>4</h2>
+    <p>O quarto ponto “Corrigir possíveis erros” tem uma interpretação muito clara, pedindo então para se corrigirem os
+      valores respondidos que são irrealistas e que não fazem sentido. Estes são considerados erros que ocorreram na
+      inserção dos dados.</p>
+    <p>Sendo assim, para se realizar o ponto 4 do enunciado, foram alterados manualmente os valores correspondentes a
+      estes casos. Por exemplo, na coluna da idade, foi observado que não era possível que um inquirido tivesse a idade
+      de 700 anos. Desta observação foi concluído que, quando o inquirido colocou 700 na idade, este enganou-se e queria
+      colocar 70. Assumindo esta possibilidade como verdadeira, foi substituído neste caso o valor 700 por 70 na coluna
+      dos anos e a respetiva linha. Da mesma maneira, foi substituído o valor 500 por 50.</p>
+    <p><u>Procedimento</u></p>
+    <ol type="1">
+      <li>
+        <p>Alterar manualmente os valores.</p>
+      </li>
+    </ol>
+  </div>
+  
+  <div id="Excel-5" class="section level1">
+    <h2>5</h2>
+    <p>Para se efetuar o ponto 5 do enunciado “Criar regra de validação para duas variáveis: uma quantitativa e a outra
+      qualitativa”, foi aplicada uma regra de validação das variáveis “idades” e “urbrural”. Deste modo, foi deliberado
+      que na idade estariam apenas valores entre 16 e 99 e que a variável rural assumiria apenas os seguintes valores de
+      texto: “rural”, “urbano” e “suburbano”.</p>
+    <p><u>Procedimento</u></p>
+    <ol type="1">
+      <li>
+        <p>Pressionar a secção dados da aba superior e utilizar as ferramentas de dados.</p>
+      </li>
+      <li>
+        <p>Pressionar validação de dados.</p>
+      </li>
+      <li>
+        <p>Pressionar validação de dados.</p>
+      </li>
+      <li>
+        <p>Escolher os valores que queríamos que este respeita-se.</p>
+      </li>
+    </ol>
+  </div>
+  
+  <div id="Excel-6" class="section level1">
+    <h2>6</h2>
+    <p>O sexto ponto pedia-se para “Construir uma tabela de frequências absolutas com funções de contagem e cálculo de
+      percentagens. Era então tencionado que se utilizassem funções de contagem numa dada variável, determinando assim a
+      frequência (quantidade de vezes que aparecem) de certos valores numa dada coluna. Por fim, esses dados seriam
+      utilizados para construir a tabela de frequências absolutas. A variável escolhida para ser analisada foi
+      “urbrural” e foram considerados todos os valores da coluna respetiva (incluindo os “NA”).</u></p>
+    <ol type="1">
+      <li>
+        <p>Utilizar a função CONTAR.SE.</p>
+      </li>
+      <li>
+        <p>No primeiro parâmetro inserir a coluna referente à variável escolhida.</p>
+      </li>
+      <li>
+        <p>O segundo parâmetro colocar o valor que se procura
+        </p>
+      </li>
+      <li>
+        <p>Para se calcular a percentagem, dividir a frequência de cada valor pelo total de linhas da coluna
+          correspondente à variável a se analisada (no nosso caso foi 860) e meter isso em estilo percentagem (*100).
+        </p>
+      </li>
+    </ol>
+  <div id="Excel-7" class="section level1">
+    <h2>7</h2>
+    <p>No ponto sete, o objetivo era “Construir uma tabela de frequências dinâmica”. Como o próprio nome indica, esta
+      baseia-se numa tabela de frequências habitual, no entanto a vantagem em relação á de frequências normal é que esta é feita automaticamente pelo Excel, bastando assim escolher a variável a ser analisada. Para a realização deste
+      exercício, foi escolhida a variável “idades”.</p>
+    <p><u>Procedimento</u></p>
+    <ol type="1">
+      <li>
+        <p>Carregar em “Inserir”, na aba superior do Excel e selecionar a opção “Tabela Dinâmica”.
+        </p>
+      </li>
+      <li>
+        <p>No editor da tabela dinâmica, selecionar como linhas, colunas e valores a variável em estudo (idades neste
+          caso).</p>
+      </li>
+    </ol>
+  </div>
+  <div id="Excel-8" class="section level1">
+    <h2>8</h2>
+    <p>A tarefa 8 envolvia, tal como é expresso no enunciado, “Construir uma tabela de cruzamentos dinâmica”. Este último ponto da secção do “Excel”, assemelha-se muito ao anterior que visa montar uma tabela de frequências dinâmica. A diferença entre ambas é que a de cruzamentos “cruza”, como sugere o nome duas variáveis distintas enquanto que a outra tem como base apenas os valores de uma variável. Para a criação desta tabela decidiu-se as seguintes correlações para os parâmetros pedidos no editor da tabela. Para as “Linhas” foi colocada a variável
+      “anos_esc”, para as “Colunas” foi colocado a o “agregado” e para os “Valores” foi colocada a contagem dos
+      agregados.</u></p>
+    <ol type="1">
+      <li>
+        <p>Seguir atentamente os paços 1 e 2 do procedimento relativo á construção de uma tabela de frequências
+          dinâmica.</p>
+      </li>
+      <li>
+        <p>No editor anteriormente mencionado, inserir diferentes correspondências para os parâmetros: “Linhas”,
+          “Colunas” e “Valores”.</p>
+      </li>
+    </ol>
     <div id="II-Jamovi"></div>
     <div id="III-R">
       <h1>III - R</h1>
