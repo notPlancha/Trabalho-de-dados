@@ -1,0 +1,2 @@
+Conclusão
+Em suma, este projeto levou-nos a desenvolver conpetências essenciais como a capacidade de relacionar várias variáveis dentro de uma base de dados, através da visualização dos dados em tabelas e gráficos e da sua análise estatística. Para além disso, também foi necessário o tratamento dos dados estatísticos, que por si só é algo muito importante pois vai impactar futuras análises de dados. Por fim, podemos salientar a automatização de algumas atividades que foram feitas neste trabalho atravéas da ferramentas: "Excel", "Jamovi" e a linguagem de programação "R"  
