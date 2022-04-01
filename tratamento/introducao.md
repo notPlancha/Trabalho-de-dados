@@ -1,2 +1,0 @@
-Introdução
-Com o intuito de estudar um público-alvo composto por 860 pessoas, foi aplicado um questionário com questões relacionadas com o desenvolvimento do mundo, bem como algumas questões pessoais de modo a poder estabelecer relações de respostas tendo em conta as suas características. Para poder realizar este estudo, efetuamos em primeiro lugar o tratamento dos dados com o auxílio da plataforma Excel. Seguidamente usamos a ferramenta Jamovi para poder ter algumas visualizações gráficas dos dados e por último usamos a linguagem R para então tirar as conclusões finais.
