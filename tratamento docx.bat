@@ -1,1 +1,0 @@
-pandoc "relatorio I e II.docx" -o temp.html --self-contained
